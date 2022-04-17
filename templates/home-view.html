@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- <h1> Title: {{ title }} </h1>
+    <h1>Id: {{ id }} Content: {{ content }}</h1> -->
+    
+    <ul>
+        {% for obj in object_list %}
+        <div style="margin: 10px 0 0 10px;">
+            <li> <a href="/articles/{{ obj.id }}"> Title: {{ obj.title }}  - Content: {{ obj.content }} </a> </li>
+        </div>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}
