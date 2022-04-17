@@ -6,8 +6,7 @@ from django.template.loader import render_to_string
 from articles.models import Article
 
 
-def home_view(request):
-
+def home_view(request, *args, **kwargs):
     obj = Article.objects.get(id=2)
     query_set = Article.objects.all()
     # names = ['Carlos Soler', "Bruno Fernandes", "Harry Kane", "Lorenzon Pellegrine"]

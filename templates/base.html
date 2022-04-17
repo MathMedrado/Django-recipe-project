@@ -14,13 +14,18 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                <a class="nav-link" href="#"> <span style="color: white;">Home</span></a>
-                <a class="nav-link" href="#"><span style="color: white;">Recipes</span></a>
+                <a class="nav-link" href="/"> <span style="color: white;">Home</span></a>
+                <a class="nav-link" href="/"><span style="color: white;">Recipes</span></a>
                 </div>
             </div>
             <br>
             </div>
         </nav>
+        <form action="">
+            <input  type="text" style="margin: 10px 0 0 10px;" name="query">
+            <input type="submit">
+        </form>
+
         {% block content %}
 
         {% endblock content %}
