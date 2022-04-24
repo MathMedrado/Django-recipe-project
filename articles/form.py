@@ -1,7 +1,15 @@
-from distutils.command.clean import clean
 from django import forms
+from .models import Article
 
-class ArticleForm(forms.Form):
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ['title', 'content']
+
+
+
+
+class ArticleFormOld(forms.Form):
     title = forms.CharField()
     content = forms.CharField()
     
@@ -18,7 +26,11 @@ class ArticleForm(forms.Form):
         cleaned_data = self.cleaned_data
         print('all data', cleaned_data)
         title = cleaned_data.get('title')
+        content = cleaned_data.get('content')
         if title.lower().strip() == "code geass":
             self.add_error('title', "this title is taken.")
             #raise forms.ValidationError('This title is taken.')
+        if  "geass" in content or "geass" in title.lower():
+            self.add_error('content', "geass cannot be in the content")
+            raise forms.ValidationError('Geass is not allowed')
         return cleaned_data

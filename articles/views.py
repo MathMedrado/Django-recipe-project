@@ -28,17 +28,15 @@ def article_create_view(request, *args, **kwargs):
     context = {
         'form' : form
     }
-    if request.method == 'POST':
-        form = ArticleForm(request.POST)
-        context['form'] = form
-        if form.is_valid():
-            title = form.cleaned_data.get('title')
-            content = form.cleaned_data.get('content')
-            article_obj = Article.objects.create(title=title, content=content)
-            #ele cria esse objeto podemos armazena-lo em uma variavel e passar para a view
-            context['created'] = True
-            context['object'] = article_obj
-
+    if form.is_valid():
+        article_obj = form.save()
+        #context['form'] = ArticleForm() é usada para rederizar novamente esse form.
+        # title = form.cleaned_data.get('title')
+        # content = form.cleaned_data.get('content')
+        # article_obj = Article.objects.create(title=title, content=content)
+        #ele cria esse objeto podemos armazena-lo em uma variavel e passar para a view
+        context['created'] = True
+        context['object'] = article_obj
     return render(request, "articles/create.html", context=context)
 # def article_create_view(request, *args, **kwargs): 
 #     context = {
