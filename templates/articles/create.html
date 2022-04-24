@@ -3,22 +3,14 @@
 {% block content %}
 
 {% if not created  %}
+
+
 <form action="." method="POST">
     {% csrf_token %}
     <h1 style="text-align: center;">Form to create a new Article</h1>
-    <div style="margin: 30px 0 0 10px;">
-        <label for="title">Title: </label>
-        <input type="text" name="title" placeholder="Article Title">
-    </div>
-
-
-    <div style="margin: 20px 0 0 10px;">
-        <p> Content: </p>
-        <textarea name="content" id="content" cols="70" rows="5" placeholder="Article Content"></textarea>
-    </div>
-
+        {{ form.as_p }}
     <div style="margin: 40px 0 0 10px;">
-        <button  type="submit"> Create Article</button>
+        <button class="btn btn-primary" type="submit"> Create Article</button>
     </div>
 
 </form>
@@ -30,7 +22,7 @@
     <P > Article {{ object.title }} was Created with Sucess</P>
 </div>
 <div style="margin: 40px 0 0 10px;">
-    <button > <a href="/"> Return to home</a> </button>
+    <button class="btn btn-primary" > <a href="/"> Return to home</a> </button>
 </div>
 
 {% endif %}

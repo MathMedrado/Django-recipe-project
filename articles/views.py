@@ -1,9 +1,8 @@
-from multiprocessing import context
-from turtle import title
-from venv import create
 from django.http import QueryDict
 from django.shortcuts import render
 from .models import Article
+from django.contrib.auth.decorators import login_required
+from .form import ArticleForm
 
 # Create your views here.
 
@@ -23,16 +22,38 @@ def article_search_view(request, *args, **kwargs):
     }
     return render(request,"articles/search.html", context=context)
 
+@login_required
 def article_create_view(request, *args, **kwargs): 
-    context = {}
+    form = ArticleForm(request.POST or None)
+    context = {
+        'form' : form
+    }
     if request.method == 'POST':
-        form_data = request.POST
-        title = form_data.get('title')
-        content = form_data.get('content')
-        article_obj = Article.objects.create(title=title, content=content)
-        #ele cria esse objeto podemos armazena-lo em uma variavel e passar para a view
-        context['created'] = True
-        context['object'] = article_obj
+        form = ArticleForm(request.POST)
+        context['form'] = form
+        if form.is_valid():
+            title = form.cleaned_data.get('title')
+            content = form.cleaned_data.get('content')
+            article_obj = Article.objects.create(title=title, content=content)
+            #ele cria esse objeto podemos armazena-lo em uma variavel e passar para a view
+            context['created'] = True
+            context['object'] = article_obj
+
+    return render(request, "articles/create.html", context=context)
+# def article_create_view(request, *args, **kwargs): 
+#     context = {
+#         'form' : ArticleForm()
+#     }
+#     if request.method == 'POST':
+#         form = ArticleForm(request.POST)
+#         context['form'] = form
+#         if form.is_valid():
+#             title = form.cleaned_data.get('title')
+#             content = form.cleaned_data.get('content')
+#             article_obj = Article.objects.create(title=title, content=content)
+#             #ele cria esse objeto podemos armazena-lo em uma variavel e passar para a view
+#             context['created'] = True
+#             context['object'] = article_obj
 
     return render(request, "articles/create.html", context=context)
 

@@ -51,6 +51,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'recipes.urls'
+LOGIN_URL='/login/'
 
 TEMPLATES = [
     {

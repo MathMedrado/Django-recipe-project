@@ -16,8 +16,12 @@
                 <div class="navbar-nav">
                 <a class="nav-link" href="/"> <span style="color: white;">Home</span></a>
                 <a class="nav-link" href="/articles/"><span style="color: white;">Recipes</span></a>
-                <a class="nav-link" href="/articles/create"><span style="color: white;">Add article</span></a>
-                <a class="nav-link" href="/login"><span style="color: white;">Login</span></a>
+                {% if not request.user.is_authenticated %}
+                    <a class="nav-link" href="/login"><span style="color: white;">Login</span></a>
+                {% else %} 
+                    <a class="nav-link" href="/articles/create"><span style="color: white;">Add article</span></a>
+                    <a class="nav-link" href="/logout"><span style="color: white;">Logout</span></a>
+                {% endif%}
                 </div>
             </div>
             <br>
