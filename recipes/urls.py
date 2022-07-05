@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from .views import home_view
 from articles.views import article_detail_view, article_search_view, article_create_view
-from accounts.views import login_view, logout_view
+from accounts.views import login_view, logout_view, registration_view
 #outra forma da invocação acima from article import views
 
 urlpatterns = [
@@ -31,4 +31,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login_view),
     path('logout/', logout_view),
+    path('register/', registration_view ),
 ]
