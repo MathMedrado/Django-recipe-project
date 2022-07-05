@@ -11,7 +11,7 @@
         {% endif%}
         <form action="" method="POST">
             {% csrf_token %}
-            <h1 style="margin: 20px 20px 0 20px;"> Login </h1>
+            <!-- <h1 style="margin: 20px 20px 0 20px;"> Login </h1>
             <div style="margin: 20px 0 0 20px;">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username" placeholder="digit your username">
@@ -19,7 +19,8 @@
             <div style="margin: 20px 0 0 20px;">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password">
-            </div>
+            </div> -->
+            {{ form.as_p }}
             <div style="margin: 20px 50px 0 20px;">
                 <button class="btn btn-primary" type="submit"> Login</button>
             </div>
